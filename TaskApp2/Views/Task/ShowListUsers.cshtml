@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TaskApp2.Models.DevelopersModel>
+
+@{
+    ViewBag.Title = "Список возможных исполнителей";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Добавить в задачу", "AddUserInTask", new { name = item.name, id = ViewBag.idTask }) |
+        </td>
+    </tr>
+}
+
+</table>

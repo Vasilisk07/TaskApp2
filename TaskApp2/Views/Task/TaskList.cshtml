@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TaskApp2.Models.TaskModel>
+
+@{
+    ViewBag.Title = "Список задач";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Добавить задачу", "CreateTask")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Название задачи
+        </th>
+        <th>
+            Описание
+        </th>
+        <th>
+           Затраченое время
+        </th>
+        <th>
+            Дата начала
+        </th>
+        <th>
+            Дата окончания
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskLeigth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskBegin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskEnd)
+        </td>
+        <td>
+            @Html.ActionLink("Добавить исполнителя", "ShowListUsers", new { id=item.TaskId }) |
+            @Html.ActionLink("Подробнее", "DetailsTask", new { id=item.TaskId }) |
+            @Html.ActionLink("Удалить", "DeleteTask", new { id=item.TaskId })
+        </td>
+    </tr>
+}
+
+</table>
