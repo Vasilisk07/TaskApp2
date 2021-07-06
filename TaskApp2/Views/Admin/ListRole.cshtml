@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TaskApp2.Models.RoleModels>
+
+@{
+    ViewBag.Title = "EditUser";
+}
+
+<h2>Выберите новый тип доступа для пользователя : @ViewBag.userName</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RolesName)
+        </td>
+        <td>
+            @Html.ActionLink("Установить", "EditUser", new { roleName=item.RolesName, userName = ViewBag.userName }) 
+
+        </td>
+    </tr>
+}
+
+</table>
