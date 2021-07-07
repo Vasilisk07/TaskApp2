@@ -21,7 +21,7 @@ namespace TaskApp2.Controllers
         {
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             ApplicationUser user = userManager.FindByName(userName);
-            if (user != null)
+            if (user != null&&user.UserName!=User.Identity.Name)
             {
 
                 foreach (var item in DbTasks.ActualModels)
