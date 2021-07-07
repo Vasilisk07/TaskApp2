@@ -24,7 +24,7 @@ namespace TaskApp2.Controllers
                 if (userName== item.UserName)
                 {
                     myTasks.Add(new UserTaskModel {TaskName = item.TaskName, TaskInfo = item.Description, TaskTime = item.ActTaskLeigth.ToString() + "H", myTaskId= item.ActualTaskId });
-                    ViewBag.Title = "Доступные задачи";
+                    ViewBag.Title = "Доступные задачи для :"+User.Identity.Name;
                 }
 
             }
@@ -75,14 +75,14 @@ namespace TaskApp2.Controllers
             int TaskId = 0;
             foreach (var item in DbTasks.ActualModels)
             {
-                if (item.UserName == userName && item.ActualTaskId == editsTask.IdChengTask)
+                if (item.UserName == userName && item.ActualTaskId == editsTask.IdChengTask&&editsTask.Time>0)
                 {
-                    item.Description = editsTask.Comit!=""? $" {item.Description}{Environment.NewLine}{DateTime.Now.ToString("dd.MM.yyyy")} {editsTask.Comit}|":item.Description;
+                    item.Description = editsTask.Comit!=null? $" {item.Description} | {DateTime.Now.ToString("dd.MM.yyyy")} {editsTask.Comit}":item.Description;
                     item.ActTaskLeigth += editsTask.Time;
                     TaskId = item.TaskId;
                 }
             }
-            if (TaskId!=0)
+            if (TaskId>0)
             {
                 foreach (var item in DbTasks.Tasks)
                 {
