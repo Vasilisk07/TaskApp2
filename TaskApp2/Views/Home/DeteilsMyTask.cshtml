@@ -1,0 +1,56 @@
+﻿@model TaskApp2.Models.TaskModel
+
+@{
+    ViewBag.Title = "Детальнее о задаче "+"\""+Model.TaskName+"\"";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Название задаче
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskName)
+        </dd>
+
+        <dt>
+           Описание задачи
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskDescription)
+        </dd>
+
+        <dt>
+           Затраченое время
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskLeigth)
+        </dd>
+
+        <dt>
+            Дата начала
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskBegin)
+        </dd>
+
+        <dt>
+            Дата окончания
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskEnd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Вернутся к задачам", "ListMyTask")
+</p>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TaskApp2.Models.CurentTaskModel>
+
+@{
+    ViewBag.Title = "DetailsTask";
+}
+
+<h3>@ViewBag.Task.TaskName   </h3>
+<h5>@ViewBag.Task.TaskDescription   </h5>
+<h5>@ViewBag.Task.TaskLeigth H  </h5>
+
+
+<table class="table">
+    <tr>
+        <th>
+           Исполнители
+        </th>
+        <th>
+            Затраченое время
+        </th>
+        <th>
+            Коментарии
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.users)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskLeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TasDesc)
+        </td>
+        <td>
+
+            @Html.ActionLink("Удалить исполнителя", "DeleteUserInTask", new { idTask = ViewBag.Task.TaskId, userName =item.users  })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Перейти к списку задач", "TaskList")
+</p>

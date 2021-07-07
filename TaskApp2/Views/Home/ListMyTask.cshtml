@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TaskApp2.Models.UserTaskModel>
+
+
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskTime)
+        </td>
+        <td>
+
+            @Html.ActionLink("Внести изменения", "EditMyTask", new { id = item.myTaskId })
+            @Html.ActionLink("Детальнее о задаче", "DeteilsMyTask", new { nameTask = item.TaskName})
+
+        </td>
+    </tr>
+}
+
+</table>

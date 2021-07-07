@@ -27,6 +27,60 @@ namespace TaskApp2.Controllers
 
 
 
+        public ActionResult DeleteUserInTask(int idTask ,string userName)
+        {
+
+            foreach (var item in DbTasks.ActualModels)
+            {
+                if (item.TaskId == idTask && item.UserName == userName)
+                {
+                    DbTasks.Entry(item).State = EntityState.Deleted;  
+                }
+            }
+            DbTasks.SaveChanges();
+
+            string returnUrl = "DetailsTask\\" + idTask;
+
+            return RedirectToAction(returnUrl);
+        }
+
+
+        public ActionResult DetailsTask(int id)
+        {
+            List<CurentTaskModel> CurentTaskUsers = new List<CurentTaskModel>();
+
+            foreach (var item in DbTasks.ActualModels)
+            {
+                if (id == item.TaskId)
+                {
+                    CurentTaskUsers.Add(new CurentTaskModel { users = item.UserName, TasDesc = item.Description , TaskLeight= item.ActTaskLeigth.ToString()+" H"});
+                }
+
+            }
+            foreach (var item in DbTasks.Tasks)
+            {
+                if (item.TaskId==id)
+                {
+                    ViewBag.Task = item;
+                }
+
+            }
+
+
+
+
+
+
+            return View(CurentTaskUsers);
+
+        }
+
+
+
+
+
+
+
 
         public ActionResult ShowListUsers(int id)
         {

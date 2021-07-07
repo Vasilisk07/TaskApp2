@@ -178,6 +178,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActualTaskModel.cs" />
     <Compile Include="Models\AppDbInitializer.cs" />
+    <Compile Include="Models\ChangesTaskModel.cs" />
     <Compile Include="Models\CurentTaskModel.cs" />
     <Compile Include="Models\DevelopersModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Models\RoleModels.cs" />
     <Compile Include="Models\TaskContext.cs" />
     <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\UserTaskModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -250,6 +252,10 @@
     <Content Include="Views\Task\CreateTask.cshtml" />
     <Content Include="Views\Task\TaskList.cshtml" />
     <Content Include="Views\Task\ShowListUsers.cshtml" />
+    <Content Include="Views\Task\DetailsTask.cshtml" />
+    <Content Include="Views\Home\ListMyTask.cshtml" />
+    <Content Include="Views\Home\EditMyTask.cshtml" />
+    <Content Include="Views\Home\DeteilsMyTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
