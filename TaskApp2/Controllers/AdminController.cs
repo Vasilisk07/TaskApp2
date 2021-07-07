@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,20 +15,29 @@ namespace TaskApp2.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext DbUsers = ApplicationDbContext.Create();
-
+        TaskContext DbTasks = new TaskContext();
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteUser(string userName)
         {
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             ApplicationUser user = userManager.FindByName(userName);
             if (user != null)
             {
+
+                foreach (var item in DbTasks.ActualModels)
+                {
+                    if (item.UserName==user.UserName)
+                    {
+                        DbTasks.Entry(item).State = EntityState.Deleted;
+                    }
+                }
                 userManager.Delete(user);
-               
             }
+            DbTasks.SaveChanges();
 
             return RedirectToAction("UserList", "Admin");
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult UserList()
         {
            List< UserViewModel> userlist= new List<UserViewModel>();
@@ -39,7 +49,7 @@ namespace TaskApp2.Controllers
             return View(userlist);
         }
 
-       
+        [Authorize(Roles = "Admin")]
         public ActionResult ListRole(string UserName)
         {
             ViewBag.userName = UserName;
@@ -53,7 +63,7 @@ namespace TaskApp2.Controllers
 
             return View(rModelList);
         }
-       
+        [Authorize(Roles = "Admin")]
         public ActionResult EditUser(string roleName, string userName)
         {
             

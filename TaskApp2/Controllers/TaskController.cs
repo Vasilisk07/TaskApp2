@@ -15,6 +15,9 @@ namespace TaskApp2.Controllers
         TaskContext DbTasks = new TaskContext();
         ApplicationDbContext DbUsers = ApplicationDbContext.Create();
 
+
+        [Authorize(Roles = "Admin , Manager")]
+        
         public ActionResult TaskList()
         {
 
@@ -26,7 +29,7 @@ namespace TaskApp2.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult DeleteUserInTask(int idTask ,string userName)
         {
 
@@ -44,7 +47,7 @@ namespace TaskApp2.Controllers
             return RedirectToAction(returnUrl);
         }
 
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult DetailsTask(int id)
         {
             List<CurentTaskModel> CurentTaskUsers = new List<CurentTaskModel>();
@@ -81,7 +84,7 @@ namespace TaskApp2.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult ShowListUsers(int id)
         {
             ViewBag.idTask = id;
@@ -102,7 +105,7 @@ namespace TaskApp2.Controllers
 
             return View(Devlist);
         }
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult AddUserInTask(string name, int id )
         {
             string taskName = "";
@@ -132,7 +135,7 @@ namespace TaskApp2.Controllers
             return RedirectToAction("TaskList", "Task");
         }
 
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult AddUserToTask(int id)
         {
             ViewBag.idTask = id;
@@ -141,7 +144,7 @@ namespace TaskApp2.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin , Manager")]
         public ActionResult DeleteTask(int id)
         {
             TaskModel task = new TaskModel { TaskId = id };
@@ -163,7 +166,7 @@ namespace TaskApp2.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin , Manager")]
         [HttpGet]
         public ActionResult CreateTask()
         {

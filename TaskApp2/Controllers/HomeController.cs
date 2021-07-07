@@ -14,7 +14,7 @@ namespace TaskApp2.Controllers
         ApplicationDbContext DbUsers = ApplicationDbContext.Create();
 
 
-        [Authorize]
+        [Authorize(Roles = "Admin, Manager, Dev")]
         public ActionResult ListMyTask()
         {
             List<UserTaskModel> myTasks = new List<UserTaskModel>();
@@ -36,7 +36,7 @@ namespace TaskApp2.Controllers
 
             return View(myTasks);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin, Manager, Dev")]
         [HttpGet]
         public ActionResult EditMyTask(int id)
         {
@@ -52,7 +52,7 @@ namespace TaskApp2.Controllers
 
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin, Manager, Dev")]
         public ActionResult DeteilsMyTask(string nameTask)
         {
             foreach (var item in DbTasks.Tasks)
@@ -67,7 +67,7 @@ namespace TaskApp2.Controllers
 
             return RedirectToAction("ListMyTask", "Home");
         }
-        [Authorize]
+        [Authorize(Roles = "Admin, Manager, Dev")]
         [HttpPost]
         public ActionResult EditMyTask(ChangesTaskModel editsTask)
         {
@@ -118,7 +118,7 @@ namespace TaskApp2.Controllers
 
             return View();
         }
-        [Authorize (Roles = "Admin")]
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
